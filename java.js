@@ -1,7 +1,6 @@
 function skiResort(difficulty, price, terrainPark, freshSnow) {
     this.difficulty = difficulty;
     this.price = price;
-    this.base = base;
     this.freshSnow = freshSnow;
     this.terrainPark = terrainPark;
 }
@@ -33,6 +32,7 @@ function getData(result) {
     for (var i = 0; i < result.data.weather.length; i++) {
         console.log(result.data.weather[i].totalSnowfall_cm);
     }
+
 }
 
 
@@ -47,24 +47,23 @@ var boreal = new skiResort("begginer",74,"yes",0);
 var diamondPeak = new skiResort("intermediate",74,"some",0);
 var kirkwood = new skiResort("everyone",107,"some",0);
 
-var theSkier = new skier(advanced,100,yes);
+var theSkier = new skier("advanced",100,"yes");
 
 
 
-function pickResort(skier) {
 
-    //price
-    //level
-    //fresh snow
-    //terrain park
+function pickResort() {
 
-    if((skier.level===skiResort.level) || (skiResort.level=== "everyone")) {
-        console.log(skiResort);
+    if(theSkier.priceLimit >= skiResort.price) {
 
+        if ((theSkier.level === skiResort.difficulty) || (skiResort.difficulty === "everyone")) {
 
+            if(theSkier.terrainPark <= skiResort.terrainPark) {
+
+                //rank in order of fresh snow fall
+
+            }
+        }
     }
-
-
-
+    //print all ski resorts
 }
-
