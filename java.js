@@ -23,17 +23,17 @@ function Skier(level, priceLimit, terrainPark) {
 // 2 = some terrain park/will use it
 // 3 = a lot of terrain park/mainly ride the terrain park
 
-var alpineMeadows = new SkiResort("Alpine Meadows", "39.153309, -120.236276", 0,124,1,0);
-var squaw = new SkiResort("Squaw", "39.153309, -120.236276", 0,124,1,0);
-var mtRose = new SkiResort("Mount Rose", "39.320654, -119.884450", 0,115,1,0);
-var northstar = new SkiResort("Northstar", "39.257063, -120.132625", 1,140,2,0);
-var homewood = new SkiResort("Homewood", "39.080040, -120.169578", 1,80,1,0);
+var alpineMeadows = new SkiResort("Alpine Meadows", "39.153309, -120.236276", 0,124,2,0);
+var squaw = new SkiResort("Squaw", "39.153309, -120.236276", 0,124,2,0);
+var mtRose = new SkiResort("Mount Rose", "39.320654, -119.884450", 0,115,2,0);
+var northstar = new SkiResort("Northstar", "39.257063, -120.132625", 1,140,3,0);
+var homewood = new SkiResort("Homewood", "39.080040, -120.169578", 1,80,2,0);
 var boreal = new SkiResort("Boreal", "39.332796, -120.349905", 1,74,2,0);
-var kirkwood = new SkiResort("Kirkwood", "38.677414, -120.069687", 0,107,1,0);
+var kirkwood = new SkiResort("Kirkwood", "38.677414, -120.069687", 0,107,2,0);
 
 var resorts = [alpineMeadows, squaw, mtRose, northstar, homewood, boreal, kirkwood];
 
-var theSkier = new Skier(3,100,1);
+var theSkier = new Skier(document.getElementById("skierLevel").value, document.getElementById("priceLimit").value, document.getElementById("terrainPark").value);
 
 
 for(var i=0; i<resorts.length; i++) {
@@ -47,10 +47,8 @@ function api(resort) {
         crossDomain: true,
         dataType: 'jsonp',
         success: function (result) {
-
-            resort.freshSnow = result.data.weather[5].totalSnowfall_cm;
-            console.log(resort.freshSnow);
-
+            resort.freshSnow = result.data.weather[1].totalSnowfall_cm;
+        //console.log(result);
         },
         error:   function () {
             alert('Failed!');
@@ -62,18 +60,33 @@ function api(resort) {
 
 
 
-function pickResort() {
-    for (var i=0; i<resorts.length; i++) {
+function bestResort() {
+    console.log(theSkier);
 
-        if (theSkier.priceLimit >= resorts[i].price) {
+    for(var i=0; i<resorts.length; i++) {
+        if ((theSkier.level >= resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
 
-            if ((theSkier.level >= resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
-                console.log(resorts[i]);
+            if (theSkier.terrainPark <= resorts[i].terrainPark) {
 
-                if (theSkier.terrainPark <= resorts[i].terrainPark) {
-                    //rank in order of fresh snow fall
+
+                if(theSkier.priceLimit >= resorts[i].price) {
+                    console.log( resorts[i].name + " is a good resort for you in your price range")
+
+                }
+                else{
+                    console.log( resorts[i].name + " is a good resort for you but above your price range");
                 }
             }
         }
     }
+}
+
+
+
+
+
+
+function bestWeather() {
+
+
 }
