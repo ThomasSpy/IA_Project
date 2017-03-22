@@ -33,7 +33,7 @@ var kirkwood = new SkiResort("Kirkwood", "38.677414, -120.069687", 0,107,2,0);
 
 var resorts = [alpineMeadows, squaw, mtRose, northstar, homewood, boreal, kirkwood];
 
-var theSkier = new Skier(document.getElementById("skierLevel").value, document.getElementById("priceLimit").value, document.getElementById("terrainPark").value);
+
 
 
 for(var i=0; i<resorts.length; i++) {
@@ -61,7 +61,10 @@ function api(resort) {
 
 
 function bestResort() {
-    console.log(theSkier);
+    var theSkier = new Skier(document.getElementById("skierLevel").value, document.getElementById("priceLimit").value, document.getElementById("terrainPark").value);
+
+    var goodResorts = [];
+    var expensiveResorts = [];
 
     for(var i=0; i<resorts.length; i++) {
         if ((theSkier.level >= resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
@@ -70,23 +73,29 @@ function bestResort() {
 
 
                 if(theSkier.priceLimit >= resorts[i].price) {
-                    console.log( resorts[i].name + " is a good resort for you in your price range")
-
+                    goodResorts.push(resorts[i].name);
                 }
                 else{
-                    console.log( resorts[i].name + " is a good resort for you but above your price range");
+                    expensiveResorts.push(resorts[i].name);
                 }
             }
         }
     }
+    console.log("Good resorts in your price range:");
+    console.log(goodResorts);
+    console.log("Good resorts out of your price range");
+    console.log(expensiveResorts);
 }
 
 
 
 
 
-
 function bestWeather() {
+    //rank goodResorts in terms of fresh snow
+        //return best option
 
+    //rank expensiveResorts in terms of fresh snow
+        //return best option
 
 }
