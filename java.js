@@ -19,15 +19,15 @@ function Skier(level, priceLimit, terrainPark) {
 // 3 = advanced skier/resort
 // 0 = resort for all levels
 
-// 1 = no terrain park/never use it
-// 2 = some terrain park/will use it
+// 1 = not much terrain park/never use it
+// 2 = a good amount of terrain park/will use it
 // 3 = a lot of terrain park/mainly ride the terrain park
 
 var alpineMeadows = new SkiResort("Alpine Meadows", "39.153309, -120.236276", 0,124,2,0);
 var squaw = new SkiResort("Squaw", "39.153309, -120.236276", 0,124,2,0);
 var mtRose = new SkiResort("Mount Rose", "39.320654, -119.884450", 0,115,2,0);
 var northstar = new SkiResort("Northstar", "39.257063, -120.132625", 1,140,3,0);
-var homewood = new SkiResort("Homewood", "39.080040, -120.169578", 1,80,2,0);
+var homewood = new SkiResort("Homewood", "39.080040, -120.169578", 1,80,1,0);
 var boreal = new SkiResort("Boreal", "39.332796, -120.349905", 1,74,2,0);
 var kirkwood = new SkiResort("Kirkwood", "38.677414, -120.069687", 0,107,2,0);
 
@@ -47,7 +47,11 @@ function api(resort) {
         crossDomain: true,
         dataType: 'jsonp',
         success: function (result) {
-            resort.freshSnow = result.data.weather[1].totalSnowfall_cm;
+            var snowfall = 0;
+                for(var i=0; i<=6;i++) {
+                    snowfall = snowfall + parseFloat(result.data.weather[i].totalSnowfall_cm);
+                }
+            resort.freshSnow = Math.round(snowfall);
         //console.log(result);
         },
         error:   function () {
@@ -66,17 +70,21 @@ function bestResort() {
     var goodResorts = [];
     var expensiveResorts = [];
 
+
+
     for(var i=0; i<resorts.length; i++) {
-        if ((theSkier.level >= resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
+        console.log("it is supposed to snow " + resorts[i].freshSnow + "cm in the next week at " + resorts[i].name);
 
-            if (theSkier.terrainPark <= resorts[i].terrainPark) {
 
+        if (parseInt(theSkier.terrainPark) <= resorts[i].terrainPark) {
+
+            if ((parseInt(theSkier.level) === resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
 
                 if(theSkier.priceLimit >= resorts[i].price) {
-                    goodResorts.push(resorts[i].name);
+                    goodResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow});
                 }
                 else{
-                    expensiveResorts.push(resorts[i].name);
+                    expensiveResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow});
                 }
             }
         }
@@ -85,6 +93,12 @@ function bestResort() {
     console.log(goodResorts);
     console.log("Good resorts out of your price range");
     console.log(expensiveResorts);
+
+    goodResorts.sort(function(a,b) {
+        return b.snowfall - a.snowfall;
+    });
+
+    console.log(goodResorts);
 }
 
 
@@ -92,10 +106,11 @@ function bestResort() {
 
 
 function bestWeather() {
+
+
     //rank goodResorts in terms of fresh snow
         //return best option
 
     //rank expensiveResorts in terms of fresh snow
         //return best option
-
 }
