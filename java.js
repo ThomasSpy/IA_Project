@@ -26,13 +26,12 @@ function Skier(level, priceLimit, terrainPark) {
 var alpineMeadows = new SkiResort("Alpine Meadows", "39.153309, -120.236276", 0,124,2,0);
 var squaw = new SkiResort("Squaw", "39.153309, -120.236276", 0,124,2,0);
 var mtRose = new SkiResort("Mount Rose", "39.320654, -119.884450", 0,115,2,0);
-var northstar = new SkiResort("Northstar", "39.257063, -120.132625", 1,140,3,0);
+var northstar = new SkiResort("Northstar", "39.257063, -120.132625", 0,140,3,0);
 var homewood = new SkiResort("Homewood", "39.080040, -120.169578", 1,80,1,0);
 var boreal = new SkiResort("Boreal", "39.332796, -120.349905", 1,74,2,0);
 var kirkwood = new SkiResort("Kirkwood", "38.677414, -120.069687", 0,107,2,0);
 
 var resorts = [alpineMeadows, squaw, mtRose, northstar, homewood, boreal, kirkwood];
-
 
 
 
@@ -52,14 +51,12 @@ function api(resort) {
                     snowfall = snowfall + parseFloat(result.data.weather[i].totalSnowfall_cm);
                 }
             resort.freshSnow = Math.round(snowfall);
-        //console.log(result);
         },
         error:   function () {
             alert('Failed!');
         }
     });
 }
-
 
 
 
@@ -71,11 +68,7 @@ function bestResort() {
     var expensiveResorts = [];
 
 
-
     for(var i=0; i<resorts.length; i++) {
-        console.log("it is supposed to snow " + resorts[i].freshSnow + "cm in the next week at " + resorts[i].name);
-
-
         if (parseInt(theSkier.terrainPark) <= resorts[i].terrainPark) {
 
             if ((parseInt(theSkier.level) === resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
@@ -89,28 +82,18 @@ function bestResort() {
             }
         }
     }
-    console.log("Good resorts in your price range:");
-    console.log(goodResorts);
-    console.log("Good resorts out of your price range");
-    console.log(expensiveResorts);
 
     goodResorts.sort(function(a,b) {
         return b.snowfall - a.snowfall;
     });
 
+    expensiveResorts.sort(function(a,b) {
+        return b.snowfall - a.snowfall;
+    });
+
+
+    console.log("Good resorts in your price range:");
     console.log(goodResorts);
-}
-
-
-
-
-
-function bestWeather() {
-
-
-    //rank goodResorts in terms of fresh snow
-        //return best option
-
-    //rank expensiveResorts in terms of fresh snow
-        //return best option
+    console.log("Good resorts out of your price range");
+    console.log(expensiveResorts);
 }
