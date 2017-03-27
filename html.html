@@ -9,30 +9,59 @@
 </head>
 <body>
 
+<table border="1" cellspacing="0" cellpadding="10">
+    <tr>
 
-<select id="skierLevel">
-    <option value="1" >1</option>
-    <option value="2" >2</option>
-    <option value="3" >3</option>
-</select>
-Skier Level</td>
+        <td><select id="skierLevel">
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+        </select>
+        Skier Level <br>
+            <br>
+            1 = beginner <br>
+            2 = intermediate <br>
+            3 = advanced </td>
+    </tr>
+    <tr>
+        <td><select id="terrainPark">
+            <option value="1" >1</option>
+            <option value="2" >2</option>
+            <option value="3" >3</option>
+        </select>
+        Do you use the terrain park <br>
+            <br>
+            1 = never <br>
+            2 = sometimes <br>
+            3 = that's all I ride</td>
+    </tr>
+    <tr>
+        <td><input  id="priceLimit" type="text" value="100"><br>Price Limit</td>
+    </tr>
+    <tr>
+        <td><button onclick="bestResort()">Where Should I Ski</button></td>
+    </tr>
+
+<center>
+    <div id="output0"></div>
+    <div id="output1"></div>
+    <div id="output2"></div>
+    <div id="output3"></div>
+    <div id="output4"></div>
+    <div id="output5"></div>
+    <div id="output6"></div>
+    <div id="output7"></div>
 
 
-<select id="terrainPark">
-    <option value="1" >1</option>
-    <option value="2" >2</option>
-    <option value="3" >3</option>
-</select>
-Do you use the terrain park</td>
-
-
-<td><input  id="priceLimit" type="text" value=""><br>Price Limit</td>
-
-
+    <div id="output10"></div>
+    <div id="output11"></div>
+    <div id="output12"></div>
+    <div id="output13"></div>
+    <div id="output14"></div>
+    <div id="output15"></div>
+    <div id="output16"></div>
+    <div id="output17"></div>
+</center>
 
 </body>
-
-
-<button onclick="bestResort()">Where Should I Ski</button>
-
 </html>

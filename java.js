@@ -91,9 +91,18 @@ function bestResort() {
         return b.snowfall - a.snowfall;
     });
 
-
     console.log("Good resorts in your price range:");
     console.log(goodResorts);
     console.log("Good resorts out of your price range");
     console.log(expensiveResorts);
+
+
+
+    for(var i=0; i<goodResorts.length; i++) {
+        document.getElementById("output"+i).innerHTML = goodResorts[i].name;
+    }
+
+    for(var i=0; i<expensiveResorts.length; i++) {
+        document.getElementById("output1"+i).innerHTML = expensiveResorts[i].name;
+    }
 }
