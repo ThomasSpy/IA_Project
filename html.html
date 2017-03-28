@@ -5,11 +5,12 @@
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="java.js" ></script>
+    <link rel="stylesheet" href="styles.css"/>
 
 </head>
 <body>
 
-<table border="1" cellspacing="0" cellpadding="10">
+<table id="topTable" border="1" cellspacing="0" cellpadding="10">
     <tr>
 
         <td><select id="skierLevel">
@@ -33,7 +34,7 @@
             <br>
             1 = never <br>
             2 = sometimes <br>
-            3 = that's all I ride</td>
+            3 = it's all I ride</td>
     </tr>
     <tr>
         <td><input  id="priceLimit" type="text" value="100"><br>Price Limit</td>
@@ -42,26 +43,27 @@
         <td><button onclick="bestResort()">Where Should I Ski</button></td>
     </tr>
 
-<center>
-    <div id="output0"></div>
-    <div id="output1"></div>
-    <div id="output2"></div>
-    <div id="output3"></div>
-    <div id="output4"></div>
-    <div id="output5"></div>
-    <div id="output6"></div>
-    <div id="output7"></div>
+    </table>
+
+<div id="topDiv">
+
+    <div class="center" id="outputa"></div>
+    <div class="center" id="output1a"></div> <br>
+    <div class="center" id="output2a"></div>
+    <div class="center" id="output3a"></div> <br>
+    <div class="center" id="output4a"></div>
+    <div class="center" id="output5a"></div>
+
+    <br> <br> <br>
+    <div class="center" id="outputb"></div>
+    <div class="center" id="output1b"></div>  <br>
+    <div class="center" id="output2b"></div>
+    <div class="center" id="output3b"></div> <br>
+    <div class="center" id="output4b"></div>
+    <div class="center" id="output5b"></div>
 
 
-    <div id="output10"></div>
-    <div id="output11"></div>
-    <div id="output12"></div>
-    <div id="output13"></div>
-    <div id="output14"></div>
-    <div id="output15"></div>
-    <div id="output16"></div>
-    <div id="output17"></div>
-</center>
+</div>
 
 </body>
 </html>

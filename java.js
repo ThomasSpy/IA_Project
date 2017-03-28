@@ -28,7 +28,7 @@ var squaw = new SkiResort("Squaw", "39.153309, -120.236276", 0,124,2,0);
 var mtRose = new SkiResort("Mount Rose", "39.320654, -119.884450", 0,115,2,0);
 var northstar = new SkiResort("Northstar", "39.257063, -120.132625", 0,140,3,0);
 var homewood = new SkiResort("Homewood", "39.080040, -120.169578", 1,80,1,0);
-var boreal = new SkiResort("Boreal", "39.332796, -120.349905", 1,74,2,0);
+var boreal   = new SkiResort("Boreal", "39.332796, -120.349905", 1,74,2,0);
 var kirkwood = new SkiResort("Kirkwood", "38.677414, -120.069687", 0,107,2,0);
 
 var resorts = [alpineMeadows, squaw, mtRose, northstar, homewood, boreal, kirkwood];
@@ -97,12 +97,18 @@ function bestResort() {
     console.log(expensiveResorts);
 
 
+    document.getElementById("outputa").innerHTML = ("Best Resort in your Price Range:");
+    document.getElementById("output1a").innerHTML = goodResorts[0].name;
+    document.getElementById("output2a").innerHTML = ("Snowfall in the Next Week:");
+    document.getElementById("output3a").innerHTML = goodResorts[0].snowfall + " cm";
+    document.getElementById("output4a").innerHTML = ("Price:");
+    document.getElementById("output5a").innerHTML = (goodResorts[0].name).price;
 
-    for(var i=0; i<goodResorts.length; i++) {
-        document.getElementById("output"+i).innerHTML = goodResorts[i].name;
-    }
 
-    for(var i=0; i<expensiveResorts.length; i++) {
-        document.getElementById("output1"+i).innerHTML = expensiveResorts[i].name;
-    }
+    document.getElementById("outputb").innerHTML = ("Best Resort above your Price Range:");
+    document.getElementById("output1b").innerHTML = expensiveResorts[0].name;
+    document.getElementById("output2b").innerHTML = ("Snowfall in the Next Week:");
+    document.getElementById("output3b").innerHTML = expensiveResorts[0].snowfall + " cm";
+    document.getElementById("output4b").innerHTML = ("Price:");
+    document.getElementById("output5b").innerHTML = ((expensiveResorts[0].name).toLowerCase()).price;
 }
