@@ -72,10 +72,10 @@ function bestResort() {
             if ((parseInt(theSkier.level) === resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
 
                 if (theSkier.priceLimit >= resorts[i].price) {
-                    goodResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow});
+                    goodResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow, price: resorts[i].price});
                 }
                 else {
-                    expensiveResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow});
+                    expensiveResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow, price: resorts[i].price});
                 }
             }
         }
@@ -89,33 +89,39 @@ function bestResort() {
         return b.snowfall - a.snowfall;
     });
 
-    console.log("Good resorts in your price range:");
-    console.log(goodResorts);
-    console.log("Good resorts out of your price range");
-    console.log(expensiveResorts);
 
-    if (1===1) {
+
+    if (goodResorts.length > 0) {
         document.getElementById("outputa").innerHTML = "Best Resort in your Price Range:";
         document.getElementById("output1a").innerHTML = goodResorts[0].name;
         document.getElementById("output2a").innerHTML = "Snowfall in the Next Week:";
         document.getElementById("output3a").innerHTML = (goodResorts[0].snowfall + " cm");
         document.getElementById("output4a").innerHTML = "Price:";
-       // document.getElementById("output5a").innerHTML = (           ).price;
+        document.getElementById("output5a").innerHTML = ("$" + goodResorts[0].price);
     }else {
         document.getElementById("outputa").innerHTML = "Best Resort in your Price Range:";
         document.getElementById("output1a").innerHTML = "none";
+        document.getElementById("output2a").innerHTML = "";
+        document.getElementById("output3a").innerHTML = "";
+        document.getElementById("output4a").innerHTML = "";
+        document.getElementById("output5a").innerHTML = "";
     }
 
 
-    if (1===2) {
+    if (expensiveResorts.length > 0) {
         document.getElementById("outputb").innerHTML = "Best Resort above your Price Range:";
         document.getElementById("output1b").innerHTML = expensiveResorts[0].name;
         document.getElementById("output2b").innerHTML = "Snowfall in the Next Week:";
         document.getElementById("output3b").innerHTML = (expensiveResorts[0].snowfall + " cm");
         document.getElementById("output4b").innerHTML = "Price:";
-        //document.getElementById("output5b").innerHTML = (           ).price;
-    }else{
+        document.getElementById("output5b").innerHTML = ("$" + expensiveResorts[0].price);
+    }else {
         document.getElementById("outputb").innerHTML = "Best Resort above your Price Range:";
         document.getElementById("output1b").innerHTML = "none";
+        document.getElementById("output1b").innerHTML = "none";
+        document.getElementById("output2b").innerHTML = "";
+        document.getElementById("output3b").innerHTML = "";
+        document.getElementById("output4b").innerHTML = "";
+        document.getElementById("output5b").innerHTML = "";
     }
 }

@@ -1,11 +1,12 @@
 #topDiv {
     position: relative;
-
+   left: 245px;
     bottom: 310px;
 }
 
 #topTable {
     position: relative;
+    /*background: red;*/
 
 }
 
