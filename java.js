@@ -34,7 +34,6 @@ var kirkwood = new SkiResort("Kirkwood", "38.677414, -120.069687", 0,107,2,0);
 var resorts = [alpineMeadows, squaw, mtRose, northstar, homewood, boreal, kirkwood];
 
 
-
 for(var i=0; i<resorts.length; i++) {
     api(resorts[i]);
 }
@@ -63,31 +62,30 @@ function api(resort) {
 
 function bestResort() {
     var theSkier = new Skier(document.getElementById("skierLevel").value, document.getElementById("priceLimit").value, document.getElementById("terrainPark").value);
-
     var goodResorts = [];
     var expensiveResorts = [];
 
 
-    for(var i=0; i<resorts.length; i++) {
+    for (var i = 0; i < resorts.length; i++) {
         if (parseInt(theSkier.terrainPark) <= resorts[i].terrainPark) {
 
             if ((parseInt(theSkier.level) === resorts[i].difficulty) || (resorts[i].difficulty === 0)) {
 
-                if(theSkier.priceLimit >= resorts[i].price) {
+                if (theSkier.priceLimit >= resorts[i].price) {
                     goodResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow});
                 }
-                else{
+                else {
                     expensiveResorts.push({name: resorts[i].name, snowfall: resorts[i].freshSnow});
                 }
             }
         }
     }
 
-    goodResorts.sort(function(a,b) {
+    goodResorts.sort(function (a, b) {
         return b.snowfall - a.snowfall;
     });
 
-    expensiveResorts.sort(function(a,b) {
+    expensiveResorts.sort(function (a, b) {
         return b.snowfall - a.snowfall;
     });
 
@@ -96,19 +94,28 @@ function bestResort() {
     console.log("Good resorts out of your price range");
     console.log(expensiveResorts);
 
+    if (1===1) {
+        document.getElementById("outputa").innerHTML = "Best Resort in your Price Range:";
+        document.getElementById("output1a").innerHTML = goodResorts[0].name;
+        document.getElementById("output2a").innerHTML = "Snowfall in the Next Week:";
+        document.getElementById("output3a").innerHTML = (goodResorts[0].snowfall + " cm");
+        document.getElementById("output4a").innerHTML = "Price:";
+       // document.getElementById("output5a").innerHTML = (           ).price;
+    }else {
+        document.getElementById("outputa").innerHTML = "Best Resort in your Price Range:";
+        document.getElementById("output1a").innerHTML = "none";
+    }
 
-    document.getElementById("outputa").innerHTML = ("Best Resort in your Price Range:");
-    document.getElementById("output1a").innerHTML = goodResorts[0].name;
-    document.getElementById("output2a").innerHTML = ("Snowfall in the Next Week:");
-    document.getElementById("output3a").innerHTML = goodResorts[0].snowfall + " cm";
-    document.getElementById("output4a").innerHTML = ("Price:");
-    document.getElementById("output5a").innerHTML = (goodResorts[0].name).price;
 
-
-    document.getElementById("outputb").innerHTML = ("Best Resort above your Price Range:");
-    document.getElementById("output1b").innerHTML = expensiveResorts[0].name;
-    document.getElementById("output2b").innerHTML = ("Snowfall in the Next Week:");
-    document.getElementById("output3b").innerHTML = expensiveResorts[0].snowfall + " cm";
-    document.getElementById("output4b").innerHTML = ("Price:");
-    document.getElementById("output5b").innerHTML = ((expensiveResorts[0].name).toLowerCase()).price;
+    if (1===2) {
+        document.getElementById("outputb").innerHTML = "Best Resort above your Price Range:";
+        document.getElementById("output1b").innerHTML = expensiveResorts[0].name;
+        document.getElementById("output2b").innerHTML = "Snowfall in the Next Week:";
+        document.getElementById("output3b").innerHTML = (expensiveResorts[0].snowfall + " cm");
+        document.getElementById("output4b").innerHTML = "Price:";
+        //document.getElementById("output5b").innerHTML = (           ).price;
+    }else{
+        document.getElementById("outputb").innerHTML = "Best Resort above your Price Range:";
+        document.getElementById("output1b").innerHTML = "none";
+    }
 }
