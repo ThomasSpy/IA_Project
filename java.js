@@ -116,9 +116,8 @@ function bestResort() {
         document.getElementById("output4b").innerHTML = "Price:";
         document.getElementById("output5b").innerHTML = ("$" + expensiveResorts[0].price);
     }else {
-        document.getElementById("outputb").innerHTML = "Best Resort above your Price Range:";
-        document.getElementById("output1b").innerHTML = "none";
-        document.getElementById("output1b").innerHTML = "none";
+        document.getElementById("outputb").innerHTML = "";
+        document.getElementById("output1b").innerHTML = "";
         document.getElementById("output2b").innerHTML = "";
         document.getElementById("output3b").innerHTML = "";
         document.getElementById("output4b").innerHTML = "";
